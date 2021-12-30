@@ -56,50 +56,6 @@ def pad_sequence(sequence, lengths):
 def extra_leading_dim_in_sequence(f, x, mask):
     return f(x.view(-1, *x.shape[2:]), mask.view(-1, mask.shape[2])).view(*x.shape[:3], -1)
 
-def clip_grad_norm(named_parameters, max_norm, clip=True, verbose=False):
-    """Clips gradient norm of an iterable of parameters.
-
-    The norm is computed over all gradients together, as if they were
-    concatenated into a single vector. Gradients are modified in-place.
-
-    Arguments:
-        parameters (Iterable[Variable]): an iterable of Variables that will have
-            gradients normalized
-        max_norm (float or int): max norm of the gradients
-
-    Returns:
-        Total norm of the parameters (viewed as a single vector).
-    """
-    print('--'*20)
-    max_norm = float(max_norm)
-    parameters = [(n, p) for n, p in named_parameters if p.grad is not None]
-    total_norm = 0
-    param_to_norm = {}
-    param_to_shape = {}
-    for n, p in parameters:
-        # print('**************p',p)
-        # print('**************pp.grad', p.grad,p.grad.shape)
-        param_norm = p.grad.detach().norm(2)
-        total_norm += param_norm ** 2
-        param_to_norm[n] = param_norm
-        # print('**************p',p.size,type(p.size))
-        param_to_shape[n] = tuple(p.shape)
-        if np.isnan(param_norm.item()):
-            raise ValueError("the param {} was null.".format(n))
-
-    total_norm = total_norm ** (1. / 2)
-    clip_coef = max_norm / (total_norm + 1e-6)
-    if clip_coef.item() < 1 and clip:
-        for n, p in parameters:
-            p = paddle.multiply(p.grad.detach(),clip_coef)
-
-    if verbose:
-        print('---Total norm {:.3f} clip coef {:.3f}-----------------'.format(total_norm, clip_coef))
-        for name, norm in sorted(param_to_norm.items(), key=lambda x: -x[1]):
-            print("{:<60s}: {:.3f}, ({}: {})".format(name, norm, np.prod(param_to_shape[name]), param_to_shape[name]))
-        print('-------------------------------', flush=True)
-
-    return pd.Series({name: norm.item() for name, norm in param_to_norm.items()})
 
 def find_latest_checkpoint(serialization_dir):
     """
@@ -178,7 +134,7 @@ def save_checkpoint(model, optimizer, serialization_dir, epoch, val_metric_per_e
             shutil.copyfile(model_path, os.path.join(serialization_dir, "best.th"))
 
 def restore_best_checkpoint(model, serialization_dir):
-    fn = os.path.join(serialization_dir, 'after_best.th')
+    fn = os.path.join(serialization_dir, 'best.th')
 
     model_state = paddle.load(fn)
     assert os.path.exists(fn)
