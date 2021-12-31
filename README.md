@@ -58,6 +58,8 @@ data/
 
 # 五、快速开始
 
+### 训练
+
 对于Q→ A，运行如下命令：
 
 ```
@@ -70,13 +72,29 @@ python train.py -floader model/saves/flagship_answer
 python train.py -floader model/saves/flagship_rationale -relation
 ```
 
-测试*Q* → AR效果，运行：
+### 测试
+
+加载模型进行Q→ A测试，运行如下命令：
+
+```
+python eval.py -floader model/saves/flagship_answer
+```
+
+#注：这里需要保证模型的名字为best.pd（或者可以在utils/paddle_misc的restore_best_checkpointh函数中修改模型的名字）。
+
+加载模型进行QA→ R测试，运行如下命令：
+
+```
+python eval.py -floader model/saves/flagship_rationale -relation
+```
+
+测试*Q* → AR效果，运行如下命令：
 
 ```
 python eval_q2ar.py -answer_preds model/saves/flagship_answer/valpreds.npy -rationale_preds model/saves/flagship_rationale/valpreds.npy
 ```
 
-使用预训练模型
+### 使用预训练模型
 
 预训练最优模型下载：
 
@@ -84,7 +102,7 @@ python eval_q2ar.py -answer_preds model/saves/flagship_answer/valpreds.npy -rati
 
 ​	提取码: c4ir 
 
-将对应模型放到对应的文件目录下，测试的时候直接将num_epoch置为0即可。
+将对应模型放到对应的文件目录下。
 
 # 六代码结构：
 
