@@ -118,11 +118,11 @@ python eval_q2ar.py -answer_preds model/saves/flagship_answer/valpreds.npy -rati
 |   |--__init__.py
 |   |--box_utils.py
 |   |--mask_utils.py
-|   |--vcr.py
+|   |--vcr.py  #加载数据
 |--model
 |   |--multiatt
 |   |   |--__init__.py
-|   |   |--model.py
+|   |   |--model.py  #主模型
 |   |   |--mask_softmax.py
 |   |   |--BilinearMatrixAttention.py
 |   |--saves
@@ -132,7 +132,7 @@ python eval_q2ar.py -answer_preds model/saves/flagship_answer/valpreds.npy -rati
 |   |   |   |--best.pd
 |--utils
 |   |--__init__.py
-|   |--detector.py
+|   |--detector.py  #图像特征处理
 |   |--paddle_misc.py
 |   |--Resnet50.py
 |   |--Resnet50_imagnet.py
