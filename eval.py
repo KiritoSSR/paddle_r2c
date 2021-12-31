@@ -75,15 +75,6 @@ for submodule in model.detector.backbone:
     for p in submodule.parameters():
         p.requires_grad = False
 
-if os.path.exists(args.folder):
-    print("Found folder! restoring", flush=True)
-    start_epoch, val_metric_per_epoch = restore_checkpoint(model, optimizer, serialization_dir=args.folder,
-                                                           learning_rate_scheduler=scheduler)
-else:
-    print("Making directories")
-    os.makedirs(args.folder, exist_ok=True)
-    start_epoch, val_metric_per_epoch = 0, []
-    shutil.copy2(args.params, args.folder)
 if NUM_GPUS > 1:
     model = paddle.DataParallel(model)
 param_shapes = print_para(model)
