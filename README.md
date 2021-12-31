@@ -107,7 +107,7 @@ python eval_q2ar.py -answer_preds model/saves/flagship_answer/valpreds.npy -rati
 
 ​	提取码: c4ir 
 
-将对应模型放到对应的文件目录下。
+将对应模型放到对应的文件目录下即可。
 # 六、代码结构：
 
 ```
