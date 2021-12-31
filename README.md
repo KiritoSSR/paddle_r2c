@@ -3,8 +3,7 @@
 # 一、简介
 
 本项目基于paddle复现From Recognition to Cognition: Visual Commonsense Reasoning中所提出的r2c模型，该模型用于解决视觉常识推理（Visual Commonsense Reasoning）任务，即给模型一个图像、一个对象、一个问题，四个答案和四个原因，模型必须决定哪个答案是正确的，然后在提供四个原因选出答案的最合理解释。下面提供一个例子进行说明：
-
-
+![](example.png)
 对输入的图像、对象和问题 What is going to be happen next? ，模型需要选择答案d) 和原因d)。
 
 论文地址：https://arxiv.org/abs/1811.10830
