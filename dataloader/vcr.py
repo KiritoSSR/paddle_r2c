@@ -73,6 +73,8 @@ class VCR(Dataset):
         self.coco_objects = ['__background__'] + [x['name'] for k, x in sorted(coco.items(), key=lambda x: int(x[0]))]
         self.coco_obj_to_ind = {o: i for i, o in enumerate(self.coco_objects)}
         self.embs_to_load = embs_to_load
+        if self.split =='val_one':
+            self.split =='val'
         self.h5fn = os.path.join('data/bert_feature', f'{self.embs_to_load}_{self.mode}_{self.split}.h5')
         print("Loading embeddings from {}".format(self.h5fn), flush=True)
 
@@ -90,6 +92,16 @@ class VCR(Dataset):
         val = cls(split='val', **kwargs_copy)
         # test = cls(split='test', **kwargs_copy)
         return train, val  #, test
+      
+    @classmethod
+    def splits_predict(cls, **kwargs):
+        """ Helper method to generate splits of the dataset  """
+        kwargs_copy = {x: y for x, y in kwargs.items()}
+        if 'mode' not in kwargs:
+            kwargs_copy['mode'] = 'answer'
+        val_one = cls(split='val_one', **kwargs_copy)
+
+        return  val_one
 
     @classmethod
     def eval_splits(cls, **kwargs):
