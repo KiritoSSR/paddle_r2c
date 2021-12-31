@@ -141,6 +141,7 @@ python eval_q2ar.py -answer_preds model/saves/flagship_answer/valpreds.npy -rati
 |--eval.py  #进行Q→ A和QA → R测试
 |--eval_q2ar.py  #进行Q → AR测试
 |--config.py
+|--predict.py  #进行单个数据的测试
 ```
 
 模型训练的所有参数信息都在config.py中进行了详细的注释.
