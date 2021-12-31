@@ -103,8 +103,7 @@ python eval_q2ar.py -answer_preds model/saves/flagship_answer/valpreds.npy -rati
 ​	提取码: c4ir 
 
 将对应模型放到对应的文件目录下。
-
-# 六代码结构：
+# 六、代码结构：
 
 ```
 |--data
@@ -137,4 +136,16 @@ python eval_q2ar.py -answer_preds model/saves/flagship_answer/valpreds.npy -rati
 ```
 
 模型训练的所有参数信息都在config.py中进行了详细的注释.
+
+# 七、模型信息：
+
+| 信息     | 说明        |
+| -------- | ----------- |
+| 发布者   | KiritoSSR   |
+| 时间     | 2021.12     |
+| 框架版本 | Paddle2.2.1 |
+| 应用场景 | 多模态      |
+| 支持硬件 | GPU、CPU    |
+
+
 
