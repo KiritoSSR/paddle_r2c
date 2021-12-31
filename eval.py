@@ -74,14 +74,7 @@ for submodule in model.detector.backbone:
         submodule.track_running_stats = False
     for p in submodule.parameters():
         p.requires_grad = False
-#model = paddle.DataParallel(model).cuda() if NUM_GPUS > 1 else model.cuda()
-scheduler = paddle.optimizer.lr.ReduceOnPlateau(learning_rate=0.00001, factor=0.5,mode='max',patience=1,verbose=True,cooldown=2)
-clip = paddle.nn.ClipGradByValue( max=1)
 
-optimizer = paddle.optimizer.Adam(learning_rate=scheduler,
-        parameters=model.parameters(),
-        weight_decay=0.0001,
-        grad_clip=clip)
 if os.path.exists(args.folder):
     print("Found folder! restoring", flush=True)
     start_epoch, val_metric_per_epoch = restore_checkpoint(model, optimizer, serialization_dir=args.folder,
