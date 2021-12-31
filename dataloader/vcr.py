@@ -74,7 +74,7 @@ class VCR(Dataset):
         self.coco_obj_to_ind = {o: i for i, o in enumerate(self.coco_objects)}
         self.embs_to_load = embs_to_load
         if self.split =='val_one':
-            self.split =='val'
+            self.split ='val'
         self.h5fn = os.path.join('data/bert_feature', f'{self.embs_to_load}_{self.mode}_{self.split}.h5')
         print("Loading embeddings from {}".format(self.h5fn), flush=True)
 
