@@ -63,6 +63,15 @@ data/
 - paddle 2.2.1
 - paddlenlp 
 
+需要安装requirements.txt中库函数
+
+```
+pip install -r requirements.txt
+```
+
+
+
+
 # 五、快速开始
 
 ### 训练
@@ -100,6 +109,19 @@ python eval.py -floader model/saves/flagship_rationale -relation
 ```
 python eval_q2ar.py -answer_preds model/saves/flagship_answer/valpreds.npy -rationale_preds model/saves/flagship_rationale/valpreds.npy
 ```
+想要进行一条数据的预测，需要将所需数据的json字典写入val_one.jsonl文件中，然后运行如下命令:
+
+```
+python predict.py -floader model/saves/flagship_answer 
+```
+
+或者
+
+```
+python predict.py -floader model/saves/flagship_rationale -relation
+```
+
+### 
 
 ### 使用预训练模型
 
@@ -142,6 +164,7 @@ python eval_q2ar.py -answer_preds model/saves/flagship_answer/valpreds.npy -rati
 |--eval_q2ar.py  #进行Q → AR测试
 |--config.py
 |--predict.py  #进行单个数据的测试
+|--requirements.txt
 ```
 
 模型训练的所有参数信息都在config.py中进行了详细的注释.
