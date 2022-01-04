@@ -120,6 +120,15 @@ python predict.py -floader model/saves/flagship_answer
 ```
 python predict.py -floader model/saves/flagship_rationale -relation
 ```
+输出结果如下：
+
+```
+val_labels [3]
+val_probs [[0.23186769 0.2635262  0.23137085 0.2732353 ]]
+Final val accuracy is 1.00000
+```
+
+
 
 ### 
 
