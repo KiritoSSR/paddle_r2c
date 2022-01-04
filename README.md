@@ -120,7 +120,7 @@ python predict.py -floader model/saves/flagship_answer
 ```
 python predict.py -floader model/saves/flagship_rationale -relation
 ```
-输出结果如下：
+Q→ A的输出结果如下：
 
 ```
 val_labels [3]
