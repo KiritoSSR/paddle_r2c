@@ -107,6 +107,7 @@ for epoch_num in range(start_epoch,args.num_epoch + start_epoch):
         loss.backward()
         num_batches += 1
         optimizer.step()
+        optimizer.clear_grad()
 
         # train_results.append(pd.Series({'loss': output_dict['loss'].mean().item(),
         #                                 'crl': output_dict['cnn_regularization_loss'].mean().item()}))
